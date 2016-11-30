@@ -17,10 +17,21 @@
         if($password!="" && $password2!="" && $password==$password2 && $username!=''){
             //create user
             $password = md5($password); //hash the password
-            $sql = "INSERT INTO Customer(CID,password,Email,CName) VALUES('$username','$password','$email','$username')";
+            $sql = "INSERT INTO Customer(CID,password,Email,CName) VALUES('$username','$password','$email','$username');";
+            //$sql = "INSERT INTO Admin(ID,password) VALUES('$username','$password');";
+            mysqli_query($db,$sql);
+
+            //Grant
+            $combine = "'".$username."'".'@\'%\'';
+            $combine2 = "'".$password."'";
+
+            echo "<p>".$combine."</p><br>";echo "<p>".$password."</p>";
+            $sql = "GRANT select on * to $combine identified by $combine2;";
             mysqli_query($db,$sql);
 
             $_SESSION['username'] = $username;// similar to global variable
+            $_SESSION['password'] = $password;
+            //header("location: ../welcome/admin");
             header("location: ../welcome/customer"); //redirect to home page
 
             if (!mysqli_commit($db)) {//commit when finished the transaction

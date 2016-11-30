@@ -2,7 +2,7 @@
 
 <html lang="en">
 	<head>
-		<title>Template</title>
+		<title>Welcome Farmer's S</title>
 
 		<script src="js/jquery.min.js"></script>
 		<script src="js/skel.min.js"></script>
