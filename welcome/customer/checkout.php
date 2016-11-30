@@ -124,16 +124,16 @@ session_start();
         }
 
         foreach($_SESSION['shoppingList']as $key=>$value){
-            $query = "SELECT GID FROM Goods WHERE Gname='".$key."';";
+            $query = "SELECT GID FROM Goods WHERE Gname='".$key."' lock in share mode;";
             $response=mysqli_query($db,$query);
             if($response){
                 while($row = mysqli_fetch_array($response)){
                     $GID = $row['GID'];
-                    echo "<p>".$GID." No thing happend in first insert</p>";
+                    //echo "<p>".$GID." No thing happend in first insert</p>";
                 }
             }
 
-            $query = 'INSERT INTO transaction_goods SET TID=' .$TID.',GID='.$GID.',quantity='.$value.';';
+            $query = 'INSERT INTO transaction_goods SET TID=' .$TID.',GID='.$GID.',quantity='.$value.' ;';
             mysqli_query($db,$query);
             if (!mysqli_commit($db)) {//commit when finished the transaction
                 //echo "<p>No thing happend in second insert</p>";
@@ -146,7 +146,7 @@ session_start();
 
     //Display all the previous transaction information of this user
     $query = "SELECT Deal.TID as TID,TDate,totalAmount,Gname,quantity 
-            FROM transaction_goods, Deal, Goods Where Deal.TID=transaction_goods.TID and Goods.GID=transaction_goods.GID; ";
+            FROM transaction_goods, Deal, Goods Where Deal.CID='".$_SESSION['username']."' and Deal.TID=transaction_goods.TID and Goods.GID=transaction_goods.GID ORDER BY TID DESC ; ";
     $response = mysqli_query($db,$query);
     if($response){
         echo '<font size="5em"><table align="center" cellspacing="5" cellpadding="8" width="70%" >

@@ -5,7 +5,7 @@
 	/*echo "<script type='text/javascript'>alert('$category');</script>";*/
 
 
-	$query = "SELECT * FROM Goods WHERE category='".$category."' ORDER BY Price LIMIT 9;";
+	$query = "SELECT * FROM Goods WHERE category='".$category."' ORDER BY Price LIMIT 9 lock in share mode;";
 
 	$response = mysqli_query($db,$query);
 	if($response){
@@ -567,7 +567,7 @@ mysqli_close($db);
 			<div class="wrap-footer">
 				<div class="row">
 					<div class="col-md-3 col-footer footer-1">
-						<img src="images/logofooter.png" />
+						<h3>Famer's Supermarket</h3>
 						<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
 					</div>
 					<div class="col-md-3 col-footer footer-2">
@@ -593,9 +593,9 @@ mysqli_close($db);
 					<div class="col-md-3 col-footer footer-4">
 						<div class="heading"><h4>Contact Us</h4></div>
 						<ul>
-							<li><span class="glyphicon glyphicon-home"></span>California, United States 3000009</li>
-							<li><span class="glyphicon glyphicon-earphone"></span>+91 8866888111</li>
-							<li><span class="glyphicon glyphicon-envelope"></span>infor@yoursite.com</li>
+							<li><span class="glyphicon glyphicon-home"></span>Macau SAR, China</li>
+							<li><span class="glyphicon glyphicon-earphone"></span>+853 62879264</li>
+							<li><span class="glyphicon glyphicon-envelope"></span>moyutianque@outlook.com</li>
 						</ul>
 					</div>
 				</div>
@@ -605,7 +605,7 @@ mysqli_close($db);
 			<div class="container">
 				<div class="row">
 					<div class="col-md-6">
-						Copyright &copy; 2015.Company name All rights reserved.<a target="_blank" href="http://www.cssmoban.com/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a>
+						Copyright &copy; 2015.Company name All rights reserved.
 					</div>
 					<div class="col-md-6">
 						<div class="pull-right">
